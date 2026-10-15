@@ -1,0 +1,78 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMyW6yBobkObChJ/tS3X1cf",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chitravasanth01-gif/CSA1718-artificial-intelligence-/blob/main/question%20no%204\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 4,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4vw3sHFyxnvO",
+        "outputId": "20bcf96d-8b83-40fc-afef-bf46f3e05427"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Solution found:\n",
+            "SEND = 9567\n",
+            "MORE = 1085\n",
+            "MONEY = 10652\n"
+          ]
+        }
+      ],
+      "source": [
+        "from itertools import permutations\n",
+        "\n",
+        "def solve_cryptarithmetic():\n",
+        "    letters = \"SENDMORY\"\n",
+        "\n",
+        "    for p in permutations(range(10), len(letters)):\n",
+        "        d = dict(zip(letters, p))\n",
+        "\n",
+        "        if d['S'] == 0 or d['M'] == 0:\n",
+        "            continue\n",
+        "\n",
+        "        SEND = 1000*d['S'] + 100*d['E'] + 10*d['N'] + d['D']\n",
+        "        MORE = 1000*d['M'] + 100*d['O'] + 10*d['R'] + d['E']\n",
+        "        MONEY = 10000*d['M'] + 1000*d['O'] + 100*d['N'] + 10*d['E'] + d['Y']\n",
+        "\n",
+        "        if SEND + MORE == MONEY:\n",
+        "            print(\"Solution found:\")\n",
+        "            print(\"SEND =\", SEND)\n",
+        "            print(\"MORE =\", MORE)\n",
+        "            print(\"MONEY =\", MONEY)\n",
+        "            return\n",
+        "\n",
+        "solve_cryptarithmetic()"
+      ]
+    }
+  ]
+}
