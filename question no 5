@@ -1,0 +1,107 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNrbmavEJDuRTqwakiTrEAi",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chitravasanth01-gif/CSA1718-artificial-intelligence-/blob/main/question%20no%205\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 5,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4vw3sHFyxnvO",
+        "outputId": "73e39a12-e299-4589-aa4a-253fb826ce77"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(3, 3, 1)\n",
+            "(3, 1, 0)\n",
+            "(3, 2, 1)\n",
+            "(3, 0, 0)\n",
+            "(3, 1, 1)\n",
+            "(1, 1, 0)\n",
+            "(2, 2, 1)\n",
+            "(0, 2, 0)\n",
+            "(0, 3, 1)\n",
+            "(0, 1, 0)\n",
+            "(0, 2, 1)\n",
+            "(0, 0, 0)\n",
+            "Solution found!\n"
+          ]
+        }
+      ],
+      "source": [
+        "from collections import deque\n",
+        "\n",
+        "def solve():\n",
+        "    start = (3, 3, 1)\n",
+        "    goal = (0, 0, 0)\n",
+        "\n",
+        "    queue = deque([(start, [])])\n",
+        "    visited = set()\n",
+        "\n",
+        "    while queue:\n",
+        "        state, path = queue.popleft()\n",
+        "        m, c, boat = state\n",
+        "\n",
+        "        if state == goal:\n",
+        "            for step in path + [state]:\n",
+        "                print(step)\n",
+        "            print(\"Solution found!\")\n",
+        "            return\n",
+        "\n",
+        "        if state in visited:\n",
+        "            continue\n",
+        "        visited.add(state)\n",
+        "\n",
+        "        for x in range(3):\n",
+        "            for y in range(3):\n",
+        "                if 1 <= x + y <= 2:\n",
+        "                    if boat == 1:\n",
+        "                        new_state = (m - x, c - y, 0)\n",
+        "                    else:\n",
+        "                        new_state = (m + x, c + y, 1)\n",
+        "\n",
+        "                    nm, nc, _ = new_state\n",
+        "\n",
+        "                    if not (0 <= nm <= 3 and 0 <= nc <= 3):\n",
+        "                        continue\n",
+        "\n",
+        "                    if ((nm == 0 or nm >= nc) and\n",
+        "                        (3 - nm == 0 or 3 - nm >= 3 - nc)):\n",
+        "                        queue.append((new_state, path + [state]))\n",
+        "\n",
+        "    print(\"No solution exists\")\n",
+        "\n",
+        "solve()"
+      ]
+    }
+  ]
+}
