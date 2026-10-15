@@ -1,0 +1,72 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMO/DjdeS/qWWrbsuqaWJ8e",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chitravasanth01-gif/CSA1718-artificial-intelligence-/blob/main/question%20no%208\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 8,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4vw3sHFyxnvO",
+        "outputId": "ab213e80-2db4-467c-a1ac-d9ec5f5eae07"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "DFS Traversal:\n",
+            "A B D E C F "
+          ]
+        }
+      ],
+      "source": [
+        "def DFS(graph, node, visited):\n",
+        "    if node not in visited:\n",
+        "        print(node, end=\" \")\n",
+        "        visited.add(node)\n",
+        "\n",
+        "        for neighbour in graph[node]:\n",
+        "            DFS(graph, neighbour, visited)\n",
+        "\n",
+        "graph = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['D', 'E'],\n",
+        "    'C': ['F'],\n",
+        "    'D': [],\n",
+        "    'E': [],\n",
+        "    'F': []\n",
+        "}\n",
+        "\n",
+        "print(\"DFS Traversal:\")\n",
+        "DFS(graph, 'A', set())"
+      ]
+    }
+  ]
+}
