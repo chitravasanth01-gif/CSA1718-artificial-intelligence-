@@ -1,0 +1,98 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNjPTvQyEG4GOn3x8gNQqe0",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chitravasanth01-gif/CSA1718-artificial-intelligence-/blob/main/CO2%20QUESTION%20NO%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yeHeE-yDakrq",
+        "outputId": "06c7c3fc-103e-4f91-ae7a-03b37c1893f2"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Map Coloring Solution:\n",
+            "A : Red\n",
+            "B : Green\n",
+            "C : Blue\n",
+            "D : Red\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Map Coloring using Constraint Satisfaction Problem (CSP)\n",
+        "\n",
+        "colors = ['Red', 'Green', 'Blue']\n",
+        "\n",
+        "graph = {\n",
+        "    'A': ['B', 'C'],\n",
+        "    'B': ['A', 'C', 'D'],\n",
+        "    'C': ['A', 'B', 'D'],\n",
+        "    'D': ['B', 'C']\n",
+        "}\n",
+        "\n",
+        "coloring = {}\n",
+        "\n",
+        "def is_valid(region, color):\n",
+        "    for neighbor in graph[region]:\n",
+        "        if neighbor in coloring and coloring[neighbor] == color:\n",
+        "            return False\n",
+        "    return True\n",
+        "\n",
+        "def solve():\n",
+        "    if len(coloring) == len(graph):\n",
+        "        return True\n",
+        "\n",
+        "    region = next(r for r in graph if r not in coloring)\n",
+        "\n",
+        "    for color in colors:\n",
+        "        if is_valid(region, color):\n",
+        "            coloring[region] = color\n",
+        "\n",
+        "            if solve():\n",
+        "                return True\n",
+        "\n",
+        "            del coloring[region]\n",
+        "\n",
+        "    return False\n",
+        "\n",
+        "if solve():\n",
+        "    print(\"Map Coloring Solution:\")\n",
+        "    for region, color in coloring.items():\n",
+        "        print(region, \":\", color)\n",
+        "else:\n",
+        "    print(\"No solution exists\")"
+      ]
+    }
+  ]
+}
