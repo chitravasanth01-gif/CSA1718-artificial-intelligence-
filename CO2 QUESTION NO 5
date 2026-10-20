@@ -1,0 +1,70 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNFJZF7veZqO+c/QWq0KJ+5",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chitravasanth01-gif/CSA1718-artificial-intelligence-/blob/main/CO2%20QUESTION%20NO%205\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 5,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "226riegAbjo2",
+        "outputId": "3cfdee6b-bd09-4bca-b468-08b2cad88bda"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Predicted class: 1\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Decision Tree using Python\n",
+        "\n",
+        "from sklearn.tree import DecisionTreeClassifier\n",
+        "\n",
+        "# Training data\n",
+        "X = [[1], [2], [3], [4], [5], [6]]\n",
+        "y = [0, 0, 0, 1, 1, 1]\n",
+        "\n",
+        "# Create Decision Tree model\n",
+        "model = DecisionTreeClassifier()\n",
+        "\n",
+        "# Train the model\n",
+        "model.fit(X, y)\n",
+        "\n",
+        "# Predict output\n",
+        "prediction = model.predict([[4]])\n",
+        "\n",
+        "print(\"Predicted class:\", prediction[0])"
+      ]
+    }
+  ]
+}
